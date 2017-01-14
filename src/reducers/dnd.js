@@ -7,6 +7,7 @@ const initDnd = {
 const dnd = ( state = initDnd, action ) => {
     switch ( action.type ) {
         case 'MOVE':
+        console.log(action)
             return {
                 ...state,
                 x: action.x,

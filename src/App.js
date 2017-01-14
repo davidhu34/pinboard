@@ -1,18 +1,13 @@
-
 import React, { Component, PropTypes } from 'react'
 import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
-import Post from './Post'
+import Board from './Board'
 
 
 const App = () => (
-    <div style={{
-        width: '600px',
-        height:'600px',
-        backgroundColor: 'SteelBlue'
-    }}>
-        <Post/>
+    <div>
+        <Board />
     </div>
 )
 

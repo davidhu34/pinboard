@@ -11,20 +11,28 @@ const collect = (connect, moniter) => ({
     isDragging: moniter.isDragging()
 })
 
-const Post = ({ connectDragSource, isDragging }) =>
-    connectDragSource(
+class Post extends Component {
+    render() {
+
+            const {    position,
+            connectDragSource, isDragging
+        } = this.props
+            console.log(this.props)
+            const { x, y } = position
+        return connectDragSource(
         <div style={{
             position:'absolute',
-            top: '50px',
-            left: '10px',
+            left: x+'px',
+            top: y+'px',
             opacity: isDragging ? 0.8 : 1,
             fontSize: 50,
             fontWeight: 'bold',
             cursor: 'move'
         }}> ♘ </div>
-    )
-
+    )}
+}
 Post.propTypes = {
+    position: PropTypes.object.isRequired,
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired
 }
