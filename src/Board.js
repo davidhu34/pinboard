@@ -9,7 +9,7 @@ const boardTarget = {
     canDrop({ x, y }) {},
     hover({ movePost } , moniter) {
         const pos = moniter.getSourceClientOffset()
-        movePost(pos)
+        //movePost(pos)
     }
 }
 
@@ -25,8 +25,7 @@ const collect = (connect, moniter) => {
 
 class Board extends Component {
     render() {
-        const { x, y,
-        connectDropTarget, isOver, canDrop, getSourceClientOffset
+        const { connectDropTarget, isOver, canDrop, getSourceClientOffset
         } = this.props
         return connectDropTarget(
             <div style={{
@@ -34,19 +33,10 @@ class Board extends Component {
                 height:'600px',
                 backgroundColor: 'SteelBlue'
             }}>
-                <Post position={{x,y}}/>
+                <Post />
             </div>
         )
     }
 }
 
-Board = DropTarget("POST", boardTarget, collect)(Board)
-export default connect(
-    state => {
-        console.log(state.dnd)
-        return state.dnd
-    },
-    dispatch => ({
-        movePost: (pos) => dispatch( movePost(pos) )
-    })
-)(Board)
+export default DropTarget("POST", boardTarget, collect)(Board)

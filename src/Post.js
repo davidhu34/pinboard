@@ -1,9 +1,17 @@
 import React, { Component, PropTypes } from 'react'
 import { DragSource } from 'react-dnd'
+import { connect } from 'react-redux'
+
+import { movePost } from './actions'
 
 const PostSource = {
     beginDrag (props) {
         return {}
+    },
+    endDrag ({ movePost }, moniter) {
+        const pos = moniter.getSourceClientOffset()
+        console.log(pos)
+        movePost(pos)
     }
 }
 const collect = (connect, moniter) => ({
@@ -14,11 +22,11 @@ const collect = (connect, moniter) => ({
 class Post extends Component {
     render() {
 
-            const {    position,
+            const {    x, y,
             connectDragSource, isDragging
         } = this.props
             console.log(this.props)
-            const { x, y } = position
+            print = isDragging?  null: '♘'
         return connectDragSource(
         <div style={{
             position:'absolute',
@@ -28,7 +36,7 @@ class Post extends Component {
             fontSize: 50,
             fontWeight: 'bold',
             cursor: 'move'
-        }}> ♘ </div>
+        }}>{print}</div>
     )}
 }
 Post.propTypes = {
@@ -37,4 +45,13 @@ Post.propTypes = {
     isDragging: PropTypes.bool.isRequired
 }
 
-export default DragSource("POST", PostSource, collect)(Post)
+Post = DragSource("POST", PostSource, collect)(Post)
+export default connect(
+    state => {
+        console.log(state.dnd)
+        return state.dnd
+    },
+    dispatch => ({
+        movePost: (pos) => dispatch( movePost(pos) )
+    })
+)(Post)
