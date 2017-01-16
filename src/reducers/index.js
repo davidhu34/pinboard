@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
-import dnd from './dnd'
+import { postList } from './dnd'
 
 const dndApp = combineReducers({
-    dnd
+    postList
 })
 
 export default dndApp

@@ -18,21 +18,27 @@ const collect = (connect, moniter) => {
     }
 }
 
-
-class Board extends Component {
-    render() {
-        const { connectDropTarget, isOver, canDrop, getSourceClientOffset
-        } = this.props
-        return connectDropTarget(
-            <div style={{
-                width: '600px',
-                height:'600px',
-                backgroundColor: 'SteelBlue'
-            }}>
-                <Post />
-            </div>
-        )
-    }
+let Board = ({ order, posts,
+    connectDropTarget, isOver, canDrop, getSourceClientOffset
+}) => {
+    const postsOnBoard = order.map( id => {
+        const { x, y } = posts[id]
+        return <Post x={x} y={y} key={id} id={id}/>
+    })
+    return connectDropTarget(
+        <div style={{
+            width: '600px',
+            height:'600px',
+            backgroundColor: 'SteelBlue'
+        }}>
+            {postsOnBoard}
+        </div>
+    )
 }
 
-export default DropTarget("POST", boardTarget, collect)(Board)
+Board = DropTarget("POST", boardTarget, collect)(Board)
+export default connect(
+    state => ({
+        ...state.postList
+    })
+)( Board )

@@ -1,4 +1,5 @@
-export const movePost = ( position ) => ({
+export const movePost = ( id, position ) => ({
     type: 'MOVE',
+    id: id,
     ...position
 })
