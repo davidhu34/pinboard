@@ -6,11 +6,7 @@ import Post from './Post'
 import { movePost } from './actions'
 
 const boardTarget = {
-    canDrop({ x, y }) {},
-    hover({ movePost } , moniter) {
-        const pos = moniter.getSourceClientOffset()
-        //movePost(pos)
-    }
+    canDrop() {},
 }
 
 const collect = (connect, moniter) => {

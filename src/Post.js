@@ -10,7 +10,6 @@ const PostSource = {
     },
     endDrag ({ movePost }, moniter) {
         const pos = moniter.getSourceClientOffset()
-        console.log(pos)
         movePost(pos)
     }
 }
@@ -21,12 +20,10 @@ const collect = (connect, moniter) => ({
 
 class Post extends Component {
     render() {
-
-            const {    x, y,
+        const {    x, y,
             connectDragSource, isDragging
         } = this.props
-            console.log(this.props)
-            print = isDragging?  null: '♘'
+        const print = isDragging?  null: '♘'
         return connectDragSource(
         <div style={{
             position:'absolute',
@@ -35,22 +32,21 @@ class Post extends Component {
             opacity: isDragging ? 0.8 : 1,
             fontSize: 50,
             fontWeight: 'bold',
+            backgroundColor: 'white',
             cursor: 'move'
         }}>{print}</div>
     )}
 }
 Post.propTypes = {
-    position: PropTypes.object.isRequired,
+    x: PropTypes.number.isRequired,
+    y: PropTypes.number.isRequired,
     connectDragSource: PropTypes.func.isRequired,
     isDragging: PropTypes.bool.isRequired
 }
 
 Post = DragSource("POST", PostSource, collect)(Post)
 export default connect(
-    state => {
-        console.log(state.dnd)
-        return state.dnd
-    },
+    state => state.dnd,
     dispatch => ({
         movePost: (pos) => dispatch( movePost(pos) )
     })
