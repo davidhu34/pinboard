@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { DropTarget } from 'react-dnd'
 
 import Post from './Post'
-import { movePost } from './actions'
 
 const boardTarget = {
     canDrop() {},
