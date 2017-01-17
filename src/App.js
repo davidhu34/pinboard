@@ -4,11 +4,12 @@ import HTML5Backend from 'react-dnd-html5-backend'
 
 import Board from './Board'
 import Bin from './trashBin'
-
+import AddPost from './AddPost'
 const App = () => (
     <div>
         <Board />
         <Bin />
+        <AddPost />
     </div>
 )
 

@@ -17,12 +17,11 @@ const collect = (connect, moniter) => {
         connectDropTarget: connect.dropTarget(),
         isOver: moniter.isOver(),
         canDrop: moniter.canDrop(),
-        getSourceClientOffset: moniter.getSourceClientOffset()
     }
 }
 
 let Bin = ({
-    connectDropTarget, isOver, canDrop, getSourceClientOffset
+    connectDropTarget, isOver, canDrop
 }) => {
     let color = canDrop? 'Salmon' : 'AliceBlue'
     color = isOver? 'Tomato': color
