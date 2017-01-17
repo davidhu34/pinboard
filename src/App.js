@@ -3,11 +3,12 @@ import { DragDropContext } from 'react-dnd'
 import HTML5Backend from 'react-dnd-html5-backend'
 
 import Board from './Board'
-
+import Bin from './trashBin'
 
 const App = () => (
     <div>
         <Board />
+        <Bin />
     </div>
 )
 

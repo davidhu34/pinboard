@@ -3,3 +3,13 @@ export const movePost = ( id, position ) => ({
     id: id,
     ...position
 })
+
+export const deletePost = (id) => ({
+    type: 'DELETE',
+    id, id
+})
+
+export const newPost = (id) => ({
+    type: 'NEW',
+    id: id
+})
